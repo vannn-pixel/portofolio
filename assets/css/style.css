@@ -1,0 +1,159 @@
+/* =========================================
+   1. SETUP UTAMA & FONT
+   ========================================= */
+/* Import Google Fonts (Outfit) - Mengambil semua weight yang dibutuhkan */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #020617; /* Slate 950: Warna paling gelap/premium */
+    color: #f8fafc; /* Text hampir putih */
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    line-height: 1.6;
+}
+
+/* =========================================
+   2. BACKGROUND EFFECTS
+   ========================================= */
+/* Pola Grid Halus */
+.bg-grid {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =========================================
+   3. GLASSMORPHISM UTILITIES
+   ========================================= */
+/* A. Glass Effect untuk Navbar/Header */
+.glass-effect {
+    background: rgba(15, 23, 42, 0.7); /* Slate-900 transparan */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Variasi Navbar saat di-scroll (opsional jika pakai JS) */
+.glass-effect.scrolled {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(45, 212, 191, 0.2);
+}
+
+/* B. Glass Card untuk Card Project/About */
+.glass-card {
+    background: rgba(30, 41, 59, 0.4); /* Slate-800 transparan */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(45, 212, 191, 0.5); /* Teal border */
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.2); /* Teal Glow */
+}
+
+/* =========================================
+   4. TEXT UTILITIES
+   ========================================= */
+/* Teks dengan Gradasi Animasi (Teal ke Ungu) */
+.animate-gradient-text, .text-gradient-animate {
+    background: linear-gradient(to right, #2dd4bf, #818cf8, #c084fc, #2dd4bf);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 5s linear infinite;
+}
+
+/* Kursor Ketik (Typing Effect) */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-start infinite;
+    color: #2dd4bf;
+    margin-left: 2px;
+}
+
+/* =========================================
+   5. KEYFRAME ANIMATIONS
+   ========================================= */
+
+/* A. Animasi Header Masuk (Slide Down) */
+@keyframes slideDown {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.animate-slideDown {
+    animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* B. Animasi Gradasi Teks */
+@keyframes textGradient {
+    to { background-position: 200% center; }
+}
+
+/* C. Animasi Blob/Orb Background */
+@keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+}
+.animate-blob {
+    animation: blob 10s infinite;
+}
+.animate-float {
+    animation: blob 8s ease-in-out infinite;
+}
+.animate-float-delayed {
+    animation: blob 8s ease-in-out 4s infinite; /* Delay biar geraknya beda */
+}
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+/* D. Animasi Scroll Mouse */
+@keyframes scrollDown {
+    0% { opacity: 0; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(10px); }
+    100% { opacity: 0; transform: translateY(20px); }
+}
+.animate-scroll, .mouse-wheel {
+    animation: scrollDown 2s infinite;
+}
+
+/* E. Animasi Kursor Blink */
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* =========================================
+   6. SCROLLBAR CUSTOMIZATION
+   ========================================= */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155; /* Slate-700 */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2dd4bf; /* Teal-400 saat hover */
+}
